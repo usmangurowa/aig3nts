@@ -12,8 +12,7 @@ const AgentChat = () => {
   const containerRef = React.useRef<HTMLDivElement>(null);
   const { handleInputChange, input, handleSubmit, messages } = useChat({
     api: `/api/chat/${agent}`,
-    id,
-    onResponse: (response) => {}
+    id
   });
 
   React.useEffect(() => {
