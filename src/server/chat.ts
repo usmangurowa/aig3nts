@@ -10,6 +10,7 @@ import {
 } from "ai";
 import { modelProvider } from "@/ai/models";
 import { nanoid } from "nanoid";
+import { search } from "@/ai/tools/search";
 
 const chat = new Hono();
 
@@ -34,13 +35,14 @@ chat.post("/:agent", async (c) => {
       const result = streamText({
         model: modelProvider.languageModel("chat-model-small"),
         system: agentData.initial_prompt,
-        //   prompt: prompt || "",
         messages,
         maxSteps: 20,
         experimental_transform: smoothStream({ chunking: "word" }),
         experimental_generateMessageId: nanoid,
         experimental_continueSteps: true,
-
+        tools: {
+          search
+        },
         onStepFinish(event) {
           // console.log('onStepFinish', event);
         },
@@ -61,6 +63,7 @@ chat.post("/:agent", async (c) => {
       console.dir(steps, { depth: null });
       console.log("total steps", steps.length);
     },
+
     onError: (error) => {
       console.log(error);
       return "Oops, an error occured!";
