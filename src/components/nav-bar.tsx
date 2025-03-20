@@ -1,14 +1,9 @@
 "use client";
 import React, { useState } from "react";
-import {
-  motion,
-  AnimatePresence,
-  useScroll,
-  useMotionValueEvent
-} from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { HomeIcon, LogInIcon, UserIcon } from "lucide-react";
+import { HomeIcon, UserIcon } from "lucide-react";
 
 const navItems = [
   {
@@ -25,27 +20,6 @@ const navItems = [
 ];
 
 export const NavBar = ({ className }: { className?: string }) => {
-  const { scrollYProgress } = useScroll();
-
-  const [visible, setVisible] = useState(true);
-
-  //   useMotionValueEvent(scrollYProgress, "change", (current) => {
-  //     // Check if current is not undefined and is a number
-  //     if (typeof current === "number") {
-  //       let direction = current! - scrollYProgress.getPrevious()!;
-
-  //       if (scrollYProgress.get() < 0.05) {
-  //         setVisible(false);
-  //       } else {
-  //         if (direction < 0) {
-  //           setVisible(true);
-  //         } else {
-  //           setVisible(false);
-  //         }
-  //       }
-  //     }
-  //   });
-
   return (
     <AnimatePresence mode="wait">
       <motion.div
@@ -54,8 +28,8 @@ export const NavBar = ({ className }: { className?: string }) => {
           y: -100
         }}
         animate={{
-          y: visible ? 0 : -100,
-          opacity: visible ? 1 : 0
+          y: 0,
+          opacity: 1
         }}
         transition={{
           duration: 0.2
