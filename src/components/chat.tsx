@@ -1,25 +1,8 @@
 "use client";
 
-import { SettingsPanelTrigger } from "@/components/settings-panel";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator
-} from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import {
-  Code,
-  Share,
-  Upload,
-  Sparkles,
-  Paperclip,
-  Mic,
-  Leaf
-} from "lucide-react";
+import { Sparkles, Paperclip, Mic, Leaf } from "lucide-react";
 import { ChatMessage } from "@/components/chat-message";
 import React, { useRef, useEffect } from "react";
 import { useParams } from "next/navigation";
