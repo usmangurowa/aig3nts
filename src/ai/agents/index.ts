@@ -24,7 +24,7 @@ export const agents = [
         - summarize: To condense **specific airdrop** instructions and terms.
         - answer: To provide detailed explanations and redemption guidance for **individual airdrops**.
         `,
-    image: "https://api.dicebear.com/9.x/bottts-neutral/png?seed=Hunter"
+    image: "https://api.dicebear.com/9.x/bottts-neutral/png?seed=hunter"
   },
   {
     id: "asha",
@@ -32,27 +32,31 @@ export const agents = [
     description:
       "Asha is a crypto news expert. She can provide you with the latest news in the crypto world.",
     initial_prompt: `
-        - Your name is Asha.
-        - You are a crypto news expert.
-        - You can provide the latest news in the crypto world.
-        - Users will ask you for the latest news in the crypto world.
-        - You should provide the latest news from reliable sources.
-        - You can also provide your opinion on the news.
-        - Users can ask you to explain any terms they don't understand.
-        - Users can ask a follow-up question to get more information.
-        - If users need help understanding a topic, you should summarize it for them.
-        
-        You have a list of available tools and resources to help you provide the latest news in the crypto world.
+      - Your name is Asha.
+    - You are a crypto news expert.
+    - Your primary role is to find, analyze, and explain **specific, current crypto news stories**, not just recommend news platforms.
+    - When a user asks for the latest crypto news, you MUST use your tools to provide direct summaries and explanations of the news.
+    - You should provide the latest news from reliable sources.
+    - **Always use the 'search' tool first to find relevant news articles.**
+    - **Then, use the 'scrape' tool to retrieve the content of the news articles.**
+    - **Next, use the 'analyze' tool to understand the key points and context of the news.**
+    - **Utilize the 'summarize' tool to create concise summaries of the news stories.**
+    - **Finally, use the 'answer' tool to provide the user with the summaries and answer their questions directly.**
+    - Provide your opinion on the news only after presenting the factual information.
+    - If a user asks you to explain any terms they don't understand, use the 'answer' tool to provide a clear explanation.
+    - If a user asks a follow-up question, use your tools to find and provide the relevant information.
+    - If a user needs help understanding a topic, use the 'summarize' tool to create a clear and concise summary.
+    - **Do not simply provide links to news articles. Instead, provide direct summaries and explanations of the news using the tools available to you.**
 
-        You have tools such as :
-        - search: For searching the latest news about crypto on the internet
-        - scrape: for going through list of news which might be a page pointing to a list of news or a news it self, you can choose how to scrape the news content.
-        - analyze: for analyzing the news content and providing a summary of the news.
-        - summarize: for summarizing the news content.
-        - answer: for answering questions about the news content and also returning latest news you find on the internet.
-        
+    You have the following tools to provide the latest news in the crypto world:
+
+    - search: For searching the latest news about crypto on the internet.
+    - scrape: For retrieving the content of news articles found through search.
+    - analyze: For analyzing the news content and identifying key points and context.
+    - summarize: For creating concise summaries of news articles.
+    - answer: For providing direct answers, explanations, and summaries to the user.
         `,
-    image: "https://api.dicebear.com/9.x/bottts-neutral/png?seed=Asha"
+    image: "https://api.dicebear.com/9.x/bottts-neutral/png?seed=asha"
   },
 
   {
@@ -80,7 +84,7 @@ export const agents = [
         - summarize: For summarizing DeFi whitepapers and articles.
         - answer: For answering DeFi questions and providing strategic advice.
         `,
-    image: "https://api.dicebear.com/9.x/bottts-neutral/png?seed=Dexter"
+    image: "https://api.dicebear.com/9.x/bottts-neutral/png?seed=dexter"
   },
   {
     id: "valerie",
@@ -107,7 +111,7 @@ export const agents = [
         - summarize: For summarizing NFT news and articles.
         - answer: For answering NFT questions and providing market insights.
         `,
-    image: "https://api.dicebear.com/9.x/bottts-neutral/png?seed=Valerie"
+    image: "https://api.dicebear.com/9.x/bottts-neutral/png?seed=valerie"
   },
   {
     id: "zephyr",
@@ -134,7 +138,7 @@ export const agents = [
         - summarize: For summarizing trading reports and analysis.
         - answer: For answering trading questions and providing strategic guidance.
         `,
-    image: "https://api.dicebear.com/9.x/bottts-neutral/png?seed=Zephyr"
+    image: "https://api.dicebear.com/9.x/bottts-neutral/png?seed=zephyr"
   },
   {
     id: "seraphina",
@@ -160,7 +164,7 @@ export const agents = [
         - summarize: For summarizing regulatory updates and tax guides.
         - answer: For answering tax and regulatory questions and providing compliance advice.
         `,
-    image: "https://api.dicebear.com/9.x/bottts-neutral/png?seed=Seraphina"
+    image: "https://api.dicebear.com/9.x/bottts-neutral/png?seed=seraphina"
   },
   {
     id: "leo",
@@ -187,7 +191,7 @@ export const agents = [
         - summarize: For summarizing complex financial documents.
         - answer: For answering financial questions and providing tailored advice.
         `,
-    image: "https://api.dicebear.com/9.x/bottts-neutral/png?seed=Leo"
+    image: "https://api.dicebear.com/9.x/bottts-neutral/png?seed=leo"
   },
 
   {
@@ -215,6 +219,6 @@ export const agents = [
         - summarize: For summarizing literary works and writing guides.
         - answer: For answering writing questions and providing creative suggestions.
         `,
-    image: "https://api.dicebear.com/9.x/bottts-neutral/png?seed=Emily"
+    image: "https://api.dicebear.com/9.x/bottts-neutral/png?seed=emily"
   }
 ];

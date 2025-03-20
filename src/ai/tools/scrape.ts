@@ -2,7 +2,7 @@ import { tool } from "ai";
 import { z } from "zod";
 import axios from "axios";
 import { userAgents } from "../utils";
-import { NodeHtmlMarkdown, NodeHtmlMarkdownOptions } from "node-html-markdown";
+import { NodeHtmlMarkdown } from "node-html-markdown";
 
 const nhm = new NodeHtmlMarkdown(
   /* options (optional) */ {},

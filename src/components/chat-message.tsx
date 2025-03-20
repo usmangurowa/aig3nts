@@ -11,11 +11,6 @@ import { Markdown } from "./mark-down";
 import { UIMessage } from "ai";
 import { useParams } from "next/navigation";
 
-type ChatMessageProps = {
-  isUser?: boolean;
-  children: React.ReactNode;
-};
-
 export function ChatMessage({ content, role }: UIMessage) {
   const isUser = role === "user";
   const { agent } = useParams<{ agent: string }>();

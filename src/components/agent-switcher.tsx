@@ -34,6 +34,15 @@ const AgentSwitcher = () => {
     agent.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  React.useEffect(() => {
+    const foundAgent = agents.find((a) => a.id === agent);
+    if (foundAgent) {
+      setActiveAgent(foundAgent);
+    } else {
+      setActiveAgent(agents[0] ?? null);
+    }
+  }, [agent]);
+
   if (!agent) return null;
 
   return (

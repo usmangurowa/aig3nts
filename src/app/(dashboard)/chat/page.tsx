@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button"; // From shadcn-ui
 import { useRouter } from "next/navigation";
 import { agents } from "@/ai/agents";
 import { nanoid } from "nanoid";
+import Image from "next/image";
 
 export default function DiscoverAgentsPage() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -42,11 +43,14 @@ export default function DiscoverAgentsPage() {
             onClick={() => router.push(`/chat/${agent.id}/${nanoid()}`)}
           >
             <CardHeader>
-              <img
-                src={agent.image}
-                alt={agent.name}
-                className="w-16 h-16 rounded-full mx-auto"
-              />
+              <div className="w-16 h-16 rounded-full mx-auto relative overflow-hidden">
+                <Image
+                  src={agent.image}
+                  alt={agent.name}
+                  fill
+                  className="size-full"
+                />
+              </div>
               <CardTitle className="text-center mt-2">{agent.name}</CardTitle>
             </CardHeader>
             <CardContent>
