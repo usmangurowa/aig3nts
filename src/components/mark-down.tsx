@@ -36,7 +36,7 @@ const components: Partial<Components> = {
   },
   a: ({ node, children, ...props }) => {
     return (
-      // @ts-expect-error
+      // @ts-expect-error - next/link does not support `rel` and `target` props
       <Link
         className="text-blue-500 hover:underline"
         target="_blank"
