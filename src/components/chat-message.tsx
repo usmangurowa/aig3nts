@@ -7,13 +7,16 @@ import {
   TooltipTrigger
 } from "@/components/ui/tooltip";
 import { Code, BookMarked, RotateCw, Check } from "lucide-react";
+import { Markdown } from "./mark-down";
+import { UIMessage } from "ai";
 
 type ChatMessageProps = {
   isUser?: boolean;
   children: React.ReactNode;
 };
 
-export function ChatMessage({ isUser, children }: ChatMessageProps) {
+export function ChatMessage({ content, role }: UIMessage) {
+  const isUser = role === "user";
   return (
     <article
       className={cn(
@@ -40,7 +43,7 @@ export function ChatMessage({ isUser, children }: ChatMessageProps) {
       >
         <div className="flex flex-col gap-3">
           <p className="sr-only">{isUser ? "You" : "Bart"} said:</p>
-          {children}
+          <Markdown>{content}</Markdown>
         </div>
         {!isUser && <MessageActions />}
       </div>

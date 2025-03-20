@@ -21,61 +21,33 @@ import {
   Leaf
 } from "lucide-react";
 import { ChatMessage } from "@/components/chat-message";
-import { useRef, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
+import { useParams } from "next/navigation";
+import { useChat } from "ai/react";
 
 export default function Chat() {
+  const { agent, id } = useParams<{ agent: string; id: string }>();
+
+  const { handleInputChange, input, handleSubmit, messages } = useChat({
+    api: `/api/chat/${agent}`,
+    id,
+    onError: (error) => {
+      alert(error.message);
+    }
+  });
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView();
+    messagesEndRef.current?.scrollIntoView({
+      behavior: "smooth"
+    });
   }, []);
 
   return (
     <ScrollArea className="flex-1 [&>div>div]:h-full w-full shadow-md md:rounded-s-[inherit] min-[1024px]:rounded-e-3xl bg-background">
       <div className="h-full flex flex-col px-4 md:px-6 lg:px-8">
         {/* Header */}
-        <div className="py-5 bg-background sticky top-0 z-10 before:absolute before:inset-x-0 before:bottom-0 before:h-px before:bg-gradient-to-r before:from-black/[0.06] before:via-black/10 before:to-black/[0.06]">
-          <div className="flex items-center justify-between gap-2">
-            <Breadcrumb>
-              <BreadcrumbList className="sm:gap-1.5">
-                <BreadcrumbItem>
-                  <BreadcrumbLink href="#">Playground</BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator />
-                <BreadcrumbItem>
-                  <BreadcrumbPage>Chat</BreadcrumbPage>
-                </BreadcrumbItem>
-              </BreadcrumbList>
-            </Breadcrumb>
-            <div className="flex items-center gap-1 -my-2 -me-2">
-              <Button variant="ghost" className="px-2">
-                <Code
-                  className="text-muted-foreground sm:text-muted-foreground/70 size-5"
-                  size={20}
-                  aria-hidden="true"
-                />
-                <span className="max-sm:sr-only">Code</span>
-              </Button>
-              <Button variant="ghost" className="px-2">
-                <Share
-                  className="text-muted-foreground sm:text-muted-foreground/70 size-5"
-                  size={20}
-                  aria-hidden="true"
-                />
-                <span className="max-sm:sr-only">Share</span>
-              </Button>
-              <Button variant="ghost" className="px-2">
-                <Upload
-                  className="text-muted-foreground sm:text-muted-foreground/70 size-5"
-                  size={20}
-                  aria-hidden="true"
-                />
-                <span className="max-sm:sr-only">Export</span>
-              </Button>
-              <SettingsPanelTrigger />
-            </div>
-          </div>
-        </div>
+
         {/* Chat */}
         <div className="relative grow">
           <div className="max-w-3xl mx-auto mt-6 space-y-6">
@@ -89,22 +61,10 @@ export default function Chat() {
                 Today
               </div>
             </div>
-            <ChatMessage isUser>
-              <p>Hey Bolt, can you tell me more about AI Agents?</p>
-            </ChatMessage>
-            <ChatMessage>
-              <p>
-                AI agents are software that perceive their environment and act
-                autonomously to achieve goals, making decisions, learning, and
-                interacting. For example, an AI agent might schedule meetings by
-                resolving conflicts, contacting participants, and finding
-                optimal times—all without constant supervision.
-              </p>
-              <p>Let me know if you&lsquo;d like more details!</p>
-            </ChatMessage>
-            <ChatMessage isUser>
-              <p>All clear, thank you!</p>
-            </ChatMessage>
+            {messages.map((message, index) => (
+              <ChatMessage {...message} key={message.id} />
+            ))}
+
             <div ref={messagesEndRef} aria-hidden="true" />
           </div>
         </div>
@@ -113,6 +73,14 @@ export default function Chat() {
           <div className="max-w-3xl mx-auto bg-background rounded-[20px] pb-4 md:pb-8">
             <div className="relative rounded-[20px] border border-transparent bg-muted transition-colors focus-within:bg-muted/50 focus-within:border-input has-[:disabled]:cursor-not-allowed has-[:disabled]:opacity-50 [&:has(input:is(:disabled))_*]:pointer-events-none">
               <textarea
+                value={input}
+                onChange={handleInputChange}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" && !e.shiftKey) {
+                    e.preventDefault();
+                    handleSubmit(e);
+                  }
+                }}
                 className="flex sm:min-h-[84px] w-full bg-transparent px-4 py-3 text-[15px] leading-relaxed text-foreground placeholder:text-muted-foreground/70 focus-visible:outline-none [resize:none]"
                 placeholder="Ask me anything..."
                 aria-label="Enter your prompt"
@@ -201,7 +169,9 @@ export default function Chat() {
                     </svg>
                     <span className="sr-only">Generate</span>
                   </Button>
-                  <Button className="rounded-full h-8">Ask Bart</Button>
+                  <Button className="rounded-full h-8" onClick={handleSubmit}>
+                    Ask Bart
+                  </Button>
                 </div>
               </div>
             </div>
