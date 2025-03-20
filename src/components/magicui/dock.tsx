@@ -50,7 +50,7 @@ const Dock = React.forwardRef<HTMLDivElement, DockProps>(
         if (React.isValidElement(child) && child.type === DockIcon) {
           return React.cloneElement(child, {
             ...(typeof child.props === "object" ? child.props : {}),
-            // @ts-ignore
+            // @ts-expect-error - mouseX prop is not defined in DockIconProps
             mouseX: mouseX,
             size: iconSize,
             magnification: iconMagnification,
