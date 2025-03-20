@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { TeamSwitcher } from "@/components/team-switcher";
+import { AgentSwitcher } from "@/components/agent-switcher";
 import {
   Sidebar,
   SidebarContent,
@@ -13,69 +13,24 @@ import {
   SidebarMenuButton,
   SidebarMenuItem
 } from "@/components/ui/sidebar";
-import {
-  MessageSquare,
-  Sparkles,
-  UserCircle,
-  Mic,
-  CheckCheck,
-  Code,
-  Globe,
-  Leaf,
-  Settings
-} from "lucide-react";
+import { MessageSquare, Settings, Bot } from "lucide-react";
 
-// This is sample data.
 const data = {
-  teams: [
-    {
-      name: "ArkDigital",
-      logo: "https://res.cloudinary.com/dlzlfasou/image/upload/v1741345635/logo-01_upxvqe.png"
-    },
-    {
-      name: "Acme Corp.",
-      logo: "https://res.cloudinary.com/dlzlfasou/image/upload/v1741345635/logo-01_upxvqe.png"
-    },
-    {
-      name: "Evil Corp.",
-      logo: "https://res.cloudinary.com/dlzlfasou/image/upload/v1741345635/logo-01_upxvqe.png"
-    }
-  ],
   navMain: [
     {
-      title: "Playground",
+      title: "Dashboard",
       url: "#",
       items: [
         {
           title: "Chat",
-          url: "#",
+          url: "/chat",
           icon: MessageSquare,
           isActive: true
         },
         {
-          title: "Real-time",
-          url: "#",
-          icon: Sparkles
-        },
-        {
-          title: "Assistants",
-          url: "#",
-          icon: UserCircle
-        },
-        {
-          title: "Audio",
-          url: "#",
-          icon: Mic
-        },
-        {
-          title: "Metrics",
-          url: "#",
-          icon: CheckCheck
-        },
-        {
-          title: "Documentation",
-          url: "#",
-          icon: Code
+          title: "Agent",
+          url: "/agent",
+          icon: Bot
         }
       ]
     },
@@ -83,16 +38,6 @@ const data = {
       title: "More",
       url: "#",
       items: [
-        {
-          title: "Community",
-          url: "#",
-          icon: Globe
-        },
-        {
-          title: "Help Centre",
-          url: "#",
-          icon: Leaf
-        },
         {
           title: "Settings",
           url: "#",
@@ -107,10 +52,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar {...props} className="dark !border-none">
       <SidebarHeader>
-        <TeamSwitcher teams={data.teams} />
+        <AgentSwitcher />
       </SidebarHeader>
       <SidebarContent>
-        {/* We only show the first parent group */}
         <SidebarGroup>
           <SidebarGroupLabel className="uppercase text-sidebar-foreground/50">
             {data.navMain[0]?.title}

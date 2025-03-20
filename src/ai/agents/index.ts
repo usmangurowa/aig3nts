@@ -11,7 +11,8 @@ export const agents = [
         - Users will ask you to help them solve a math problem, you should be as descriptive as possible.
         - Provide examples and step-by-step solutions when applicable.
         - You can also provide tips and tricks to help users understand the problem better.
-        - Always confirm if the user wants further assistance after providing a solution.`
+        - Always confirm if the user wants further assistance after providing a solution.`,
+    image: "https://api.dicebear.com/9.x/bottts-neutral/png?seed=Mathilda"
   },
   {
     id: "asha",
@@ -38,6 +39,7 @@ export const agents = [
         - summarize: for summarizing the news content.
         - answer: for answering questions about the news content and also returning latest news you find on the internet.
         
-        `
+        `,
+    image: "https://api.dicebear.com/9.x/bottts-neutral/png?seed=Asha"
   }
 ];
