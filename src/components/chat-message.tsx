@@ -9,6 +9,7 @@ import {
 import { Code, BookMarked, RotateCw, Check } from "lucide-react";
 import { Markdown } from "./mark-down";
 import { UIMessage } from "ai";
+import { useParams } from "next/navigation";
 
 type ChatMessageProps = {
   isUser?: boolean;
@@ -17,6 +18,7 @@ type ChatMessageProps = {
 
 export function ChatMessage({ content, role }: UIMessage) {
   const isUser = role === "user";
+  const { agent } = useParams<{ agent: string }>();
   return (
     <article
       className={cn(
@@ -31,8 +33,8 @@ export function ChatMessage({ content, role }: UIMessage) {
         )}
         src={
           isUser
-            ? "https://res.cloudinary.com/dlzlfasou/image/upload/v1741345634/user-02_mlqqqt.png"
-            : "https://res.cloudinary.com/dlzlfasou/image/upload/v1741345634/user-01_i5l7tp.png"
+            ? "https://api.dicebear.com/9.x/dylan/png"
+            : `https://api.dicebear.com/9.x/bottts-neutral/png?seed=${agent}`
         }
         alt={isUser ? "User profile" : "Bart logo"}
         width={40}
@@ -45,7 +47,7 @@ export function ChatMessage({ content, role }: UIMessage) {
           <p className="sr-only">{isUser ? "You" : "Bart"} said:</p>
           <Markdown>{content}</Markdown>
         </div>
-        {!isUser && <MessageActions />}
+        {/* {!isUser && <MessageActions />} */}
       </div>
     </article>
   );
