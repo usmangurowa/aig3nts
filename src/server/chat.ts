@@ -41,9 +41,9 @@ chat.post("/:agent", async (c) => {
           search,
           scrape
         },
-        onStepFinish(event) {
-          // console.log('onStepFinish', event);
-        },
+        // onStepFinish(event) {
+        //   // console.log('onStepFinish', event);
+        // },
         onFinish: async ({ response, reasoning }) => {
           console.log("onFinish", { response, reasoning });
         },

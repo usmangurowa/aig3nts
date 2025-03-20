@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Input } from "@/components/ui/input"; // From shadcn-ui
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"; // From shadcn-ui
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 type Agent = {
   id: string;
@@ -67,11 +68,14 @@ export default function DiscoverAgentsPage() {
             onClick={() => router.push(`/chat/${agent.id}`)}
           >
             <CardHeader>
-              <img
-                src={agent.avatar}
-                alt={agent.name}
-                className="w-16 h-16 rounded-full mx-auto"
-              />
+              <div className="w-16 h-16 rounded-full mx-auto relative overflow-hidden">
+                <Image
+                  src={agent.avatar}
+                  alt={agent.name}
+                  fill
+                  className="size-full"
+                />
+              </div>
               <CardTitle className="text-center mt-2">{agent.name}</CardTitle>
             </CardHeader>
             <CardContent>

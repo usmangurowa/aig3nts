@@ -69,15 +69,15 @@ function ActionButton({ icon, label }: ActionButtonProps) {
   );
 }
 
-function MessageActions() {
-  return (
-    <div className="relative inline-flex bg-white rounded-md border border-black/[0.08] shadow-sm -space-x-px">
-      <TooltipProvider delayDuration={0}>
-        <ActionButton icon={<Code size={16} />} label="Show code" />
-        <ActionButton icon={<BookMarked size={16} />} label="Bookmark" />
-        <ActionButton icon={<RotateCw size={16} />} label="Refresh" />
-        <ActionButton icon={<Check size={16} />} label="Approve" />
-      </TooltipProvider>
-    </div>
-  );
-}
+// function MessageActions() {
+//   return (
+//     <div className="relative inline-flex bg-white rounded-md border border-black/[0.08] shadow-sm -space-x-px">
+//       <TooltipProvider delayDuration={0}>
+//         <ActionButton icon={<Code size={16} />} label="Show code" />
+//         <ActionButton icon={<BookMarked size={16} />} label="Bookmark" />
+//         <ActionButton icon={<RotateCw size={16} />} label="Refresh" />
+//         <ActionButton icon={<Check size={16} />} label="Approve" />
+//       </TooltipProvider>
+//     </div>
+//   );
+// }
