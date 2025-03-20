@@ -50,7 +50,7 @@ export default function Chat() {
                 Today
               </div>
             </div>
-            {messages.map((message, index) => (
+            {messages.map((message) => (
               <ChatMessage {...message} key={message.id} />
             ))}
 

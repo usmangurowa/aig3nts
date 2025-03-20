@@ -1,12 +1,11 @@
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import {
-  TooltipProvider,
   Tooltip,
   TooltipContent,
   TooltipTrigger
 } from "@/components/ui/tooltip";
-import { Code, BookMarked, RotateCw, Check } from "lucide-react";
+
 import { Markdown } from "./mark-down";
 import { UIMessage } from "ai";
 import { useParams } from "next/navigation";
