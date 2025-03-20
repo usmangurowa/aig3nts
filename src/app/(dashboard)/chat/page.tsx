@@ -4,7 +4,6 @@ import * as React from "react";
 import { useState } from "react";
 import { Input } from "@/components/ui/input"; // From shadcn-ui
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"; // From shadcn-ui
-import { Button } from "@/components/ui/button"; // From shadcn-ui
 import { useRouter } from "next/navigation";
 import { agents } from "@/ai/agents";
 import { nanoid } from "nanoid";
