@@ -1,98 +1,49 @@
-"use client";
+import React from "react";
+import { cn } from "@/lib/utils";
+import { Spotlight } from "@/components/ui/spotlight";
+import { NavBar } from "@/components/nav-bar";
+import FeaturesSectionDemo from "@/components/features-section";
+import { Button } from "@/components/ui/button";
+import { PartyPopperIcon, RocketIcon } from "lucide-react";
 
-import * as React from "react";
-import { useState } from "react";
-import { Input } from "@/components/ui/input"; // From shadcn-ui
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"; // From shadcn-ui
-import { useRouter } from "next/navigation";
-import Image from "next/image";
+const Page = () => {
+  return (
+    <>
+      <div className="relative dark flex h-svh w-full overflow-hidden rounded-md bg-black/[0.96] antialiased md:items-center md:justify-center">
+        <NavBar />
+        <div
+          className={cn(
+            "pointer-events-none absolute inset-0 [background-size:40px_40px] select-none",
+            "[background-image:linear-gradient(to_right,#171717_1px,transparent_1px),linear-gradient(to_bottom,#171717_1px,transparent_1px)]"
+          )}
+        />
 
-type Agent = {
-  id: string;
-  name: string;
-  description: string;
-  avatar: string;
+        <Spotlight
+          className="-top-40 left-0 md:-top-20 md:left-60"
+          fill="white"
+        />
+        <div className="relative z-10 mx-auto w-full max-w-7xl p-4 pt-20 md:pt-0">
+          <h1 className="bg-opacity-50 bg-gradient-to-b from-neutral-50 to-neutral-400 bg-clip-text text-center text-4xl font-bold text-transparent md:text-7xl">
+            AI-g3nts, On Demand
+          </h1>
+          <p className="mx-auto mt-4 max-w-lg text-center text-lg font-normal text-neutral-300">
+            Find the perfect AI agent for your needs, hire them instantly, and
+            achieve your goals faster. AIG3NTS makes advanced AI accessible to
+            everyone.
+          </p>
+          <div className="mx-auto flex items-center gap-5   justify-center mt-10">
+            <Button>
+              Get Started <RocketIcon />
+            </Button>
+            <Button variant={"outline"} className="text-white">
+              Chat with an agent <PartyPopperIcon />
+            </Button>
+          </div>
+        </div>
+      </div>
+      <FeaturesSectionDemo />
+    </>
+  );
 };
 
-const agents: Agent[] = [
-  {
-    id: "1",
-    name: "Agent Alpha",
-    description: "Your friendly assistant for general inquiries.",
-    avatar: "/avatars/agent-alpha.png"
-  },
-  {
-    id: "2",
-    name: "Agent Beta",
-    description: "Specialized in technical support.",
-    avatar: "/avatars/agent-beta.png"
-  },
-  {
-    id: "3",
-    name: "Agent Gamma",
-    description: "Expert in financial advice.",
-    avatar: "/avatars/agent-gamma.png"
-  }
-];
-
-export default function DiscoverAgentsPage() {
-  const [searchQuery, setSearchQuery] = useState("");
-  const router = useRouter();
-
-  // Filter agents based on the search query
-  const filteredAgents = agents.filter((agent) =>
-    agent.name.toLowerCase().includes(searchQuery.toLowerCase())
-  );
-
-  return (
-    <div className="container mx-auto p-6">
-      <h1 className="text-2xl font-bold mb-4">Discover Agents</h1>
-
-      {/* Search Input */}
-      <div className="mb-6">
-        <Input
-          type="text"
-          placeholder="Search for an agent..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full"
-        />
-      </div>
-
-      {/* Agents List */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        {filteredAgents.map((agent) => (
-          <Card
-            key={agent.id}
-            className="hover:shadow-lg transition-shadow cursor-pointer"
-            onClick={() => router.push(`/chat/${agent.id}`)}
-          >
-            <CardHeader>
-              <div className="w-16 h-16 rounded-full mx-auto relative overflow-hidden">
-                <Image
-                  src={agent.avatar}
-                  alt={agent.name}
-                  fill
-                  className="size-full"
-                />
-              </div>
-              <CardTitle className="text-center mt-2">{agent.name}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground text-center">
-                {agent.description}
-              </p>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-
-      {/* No Results */}
-      {filteredAgents.length === 0 && (
-        <p className="text-center text-muted-foreground mt-6">
-          No agents found. Try a different search.
-        </p>
-      )}
-    </div>
-  );
-}
+export default Page;
