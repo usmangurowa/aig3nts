@@ -11,6 +11,7 @@ import {
 import { modelProvider } from "@/ai/models";
 import { nanoid } from "nanoid";
 import { search } from "@/ai/tools/search";
+import { scrape } from "@/ai/tools/scrape";
 
 const chat = new Hono();
 
@@ -26,14 +27,12 @@ chat.post("/:agent", async (c) => {
     return c.json({ error: "Agent not found" }, 404);
   }
 
-  //   return c.json(agentData);
-
   return createDataStreamResponse({
     status: 200,
     statusText: "OK",
     execute: async (dataStream) => {
       const result = streamText({
-        model: modelProvider.languageModel("chat-model-small"),
+        model: modelProvider.languageModel("chat-model-large"),
         system: agentData.initial_prompt,
         messages,
         maxSteps: 20,
@@ -41,7 +40,8 @@ chat.post("/:agent", async (c) => {
         experimental_generateMessageId: nanoid,
         experimental_continueSteps: true,
         tools: {
-          search
+          search,
+          scrape
         },
         onStepFinish(event) {
           // console.log('onStepFinish', event);

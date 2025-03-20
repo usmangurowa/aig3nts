@@ -19,6 +19,7 @@ export const agents = [
       - After explaining the redemption process, you may optionally provide links to external resources for that specific airdrop.
       - You have access to the following tools:
         - search: To find **specific, active airdrops** and information.
+        - scrape: To scrape/read a list of urls you get from search results
         - analyze: To analyze **individual airdrop** requirements and risks.
         - summarize: To condense **specific airdrop** instructions and terms.
         - answer: To provide detailed explanations and redemption guidance for **individual airdrops**.
