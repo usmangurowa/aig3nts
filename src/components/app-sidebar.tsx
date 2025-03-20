@@ -50,7 +50,7 @@ const data = {
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar {...props} className="dark !border-none">
+    <Sidebar {...props} className="dark !border-none" collapsible="none">
       <SidebarHeader>
         <AgentSwitcher />
       </SidebarHeader>
