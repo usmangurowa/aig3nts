@@ -1,10 +1,5 @@
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger
-} from "@/components/ui/tooltip";
 
 import { Markdown } from "./mark-down";
 import { UIMessage } from "ai";
@@ -47,26 +42,26 @@ export function ChatMessage({ content, role }: UIMessage) {
   );
 }
 
-type ActionButtonProps = {
-  icon: React.ReactNode;
-  label: string;
-};
+// type ActionButtonProps = {
+//   icon: React.ReactNode;
+//   label: string;
+// };
 
-function ActionButton({ icon, label }: ActionButtonProps) {
-  return (
-    <Tooltip>
-      <TooltipTrigger asChild>
-        <button className="relative text-muted-foreground/80 hover:text-foreground transition-colors size-8 flex items-center justify-center before:absolute before:inset-y-1.5 before:left-0 before:w-px before:bg-border first:before:hidden first-of-type:rounded-s-lg last-of-type:rounded-e-lg focus-visible:z-10 outline-offset-2 focus-visible:outline-2 focus-visible:outline-ring/70">
-          {icon}
-          <span className="sr-only">{label}</span>
-        </button>
-      </TooltipTrigger>
-      <TooltipContent side="bottom" className="dark px-2 py-1 text-xs">
-        <p>{label}</p>
-      </TooltipContent>
-    </Tooltip>
-  );
-}
+// function ActionButton({ icon, label }: ActionButtonProps) {
+//   return (
+//     <Tooltip>
+//       <TooltipTrigger asChild>
+//         <button className="relative text-muted-foreground/80 hover:text-foreground transition-colors size-8 flex items-center justify-center before:absolute before:inset-y-1.5 before:left-0 before:w-px before:bg-border first:before:hidden first-of-type:rounded-s-lg last-of-type:rounded-e-lg focus-visible:z-10 outline-offset-2 focus-visible:outline-2 focus-visible:outline-ring/70">
+//           {icon}
+//           <span className="sr-only">{label}</span>
+//         </button>
+//       </TooltipTrigger>
+//       <TooltipContent side="bottom" className="dark px-2 py-1 text-xs">
+//         <p>{label}</p>
+//       </TooltipContent>
+//     </Tooltip>
+//   );
+// }
 
 // function MessageActions() {
 //   return (
