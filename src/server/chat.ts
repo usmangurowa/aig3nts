@@ -1,8 +1,6 @@
 import { Hono } from "hono";
 import { agents } from "@/ai/agents";
 import {
-  CoreMessage,
-  type Message,
   convertToCoreMessages,
   createDataStreamResponse,
   smoothStream,
