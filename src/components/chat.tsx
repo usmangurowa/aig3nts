@@ -43,6 +43,12 @@ export default function Chat() {
     });
   }, []);
 
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({
+      behavior: "smooth"
+    });
+  }, [messages]);
+
   return (
     <ScrollArea className="flex-1 [&>div>div]:h-full w-full shadow-md md:rounded-s-[inherit] min-[1024px]:rounded-e-3xl bg-background">
       <div className="h-full flex flex-col px-4 md:px-6 lg:px-8">
@@ -170,7 +176,7 @@ export default function Chat() {
                     <span className="sr-only">Generate</span>
                   </Button>
                   <Button className="rounded-full h-8" onClick={handleSubmit}>
-                    Ask Bart
+                    Ask {agent}
                   </Button>
                 </div>
               </div>
