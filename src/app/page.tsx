@@ -11,7 +11,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Link from "next/link";
 import { nanoid } from "nanoid";
 
-export default function Home() {
+const Home = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 text-white">
       <div className="container mx-auto px-4 py-16">
@@ -97,4 +97,6 @@ export default function Home() {
       </div>
     </div>
   );
-}
+};
+
+export default Home;

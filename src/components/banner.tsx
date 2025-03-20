@@ -3,7 +3,7 @@
 import { X } from "lucide-react";
 import { useState } from "react";
 
-export function Banner() {
+const Banner = () => {
   const [isVisible, setIsVisible] = useState(true);
 
   if (!isVisible) {
@@ -33,4 +33,6 @@ export function Banner() {
       </div>
     </div>
   );
-}
+};
+
+export { Banner };

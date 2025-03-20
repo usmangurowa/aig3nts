@@ -27,7 +27,7 @@ const SettingsPanelContext = React.createContext<SettingsPanelContext | null>(
   null
 );
 
-function useSettingsPanel() {
+const useSettingsPanel = () => {
   const context = React.useContext(SettingsPanelContext);
   if (!context) {
     throw new Error(
@@ -35,7 +35,7 @@ function useSettingsPanel() {
     );
   }
   return context;
-}
+};
 
 const SettingsPanelProvider = ({ children }: { children: React.ReactNode }) => {
   const isMobile = useIsMobile();

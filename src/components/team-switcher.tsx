@@ -19,14 +19,14 @@ import {
 } from "@/components/ui/sidebar";
 import { ChevronsUpDown, Plus } from "lucide-react";
 
-export function TeamSwitcher({
+const TeamSwitcher = ({
   teams
 }: {
   teams: {
     name: string;
     logo: string;
   }[];
-}) {
+}) => {
   const [activeTeam, setActiveTeam] = React.useState(teams[0] ?? null);
 
   if (!teams.length) return null;
@@ -36,67 +36,50 @@ export function TeamSwitcher({
       <SidebarMenuItem>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <SidebarMenuButton
-              size="lg"
-              className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground gap-3 [&>svg]:size-auto"
-            >
-              <div className="flex aspect-square size-9 items-center justify-center rounded-md overflow-hidden bg-sidebar-primary text-sidebar-primary-foreground relative after:rounded-[inherit] after:absolute after:inset-0 after:shadow-[0_1px_2px_0_rgb(0_0_0/.05),inset_0_1px_0_0_rgb(255_255_255/.12)] after:pointer-events-none">
-                {activeTeam && (
-                  <Image
-                    src={activeTeam.logo}
-                    width={36}
-                    height={36}
-                    alt={activeTeam.name}
-                  />
-                )}
-              </div>
-              <div className="grid flex-1 text-left text-base leading-tight">
-                <span className="truncate font-medium">
-                  {activeTeam?.name ?? "Select a Team"}
-                </span>
-              </div>
-              <ChevronsUpDown
-                className="ms-auto text-sidebar-foreground/50"
-                size={20}
-                aria-hidden="true"
+            <SidebarMenuButton>
+              <Image
+                src={activeTeam?.logo ?? ""}
+                alt={activeTeam?.name ?? ""}
+                width={24}
+                height={24}
+                className="size-6"
               />
+              <span className="flex-1 truncate">{activeTeam?.name}</span>
+              <ChevronsUpDown className="size-4 opacity-50" />
             </SidebarMenuButton>
           </DropdownMenuTrigger>
-          <DropdownMenuContent
-            className="dark w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-md"
-            align="start"
-            side="bottom"
-            sideOffset={4}
-          >
-            <DropdownMenuLabel className="uppercase text-muted-foreground/70 text-xs">
-              Teams
-            </DropdownMenuLabel>
-            {teams.map((team, index) => (
+          <DropdownMenuContent align="start" className="w-[200px]">
+            <DropdownMenuLabel>Switch team</DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            {teams.map((team) => (
               <DropdownMenuItem
                 key={team.name}
                 onClick={() => setActiveTeam(team)}
-                className="gap-2 p-2"
+                className="cursor-pointer"
               >
-                <div className="flex size-6 items-center justify-center rounded-md overflow-hidden">
-                  <Image
-                    src={team.logo}
-                    width={36}
-                    height={36}
-                    alt={team.name}
-                  />
-                </div>
-                {team.name}
-                <DropdownMenuShortcut>⌘{index + 1}</DropdownMenuShortcut>
+                <Image
+                  src={team.logo}
+                  alt={team.name}
+                  width={24}
+                  height={24}
+                  className="mr-2 size-6"
+                />
+                <span className="flex-1 truncate">{team.name}</span>
+                {activeTeam?.name === team.name && (
+                  <DropdownMenuShortcut>✓</DropdownMenuShortcut>
+                )}
               </DropdownMenuItem>
             ))}
             <DropdownMenuSeparator />
-            <DropdownMenuItem className="gap-2 p-2">
-              <Plus className="opacity-60" size={16} aria-hidden="true" />
-              <div className="font-medium">Add team</div>
+            <DropdownMenuItem className="cursor-pointer">
+              <Plus className="mr-2 size-4" />
+              <span>New team</span>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </SidebarMenuItem>
     </SidebarMenu>
   );
-}
+};
+
+export { TeamSwitcher };
