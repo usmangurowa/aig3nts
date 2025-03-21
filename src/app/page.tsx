@@ -5,6 +5,7 @@ import { NavBar } from "@/components/nav-bar";
 import FeaturesSectionDemo from "@/components/features-section";
 import { Button } from "@/components/ui/button";
 import { PartyPopperIcon, RocketIcon } from "lucide-react";
+import Link from "next/link";
 
 const Page = () => {
   return (
@@ -35,8 +36,10 @@ const Page = () => {
             <Button>
               Get Started <RocketIcon />
             </Button>
-            <Button variant={"outline"} className="text-white">
-              Chat with an agent <PartyPopperIcon />
+            <Button variant={"outline"} className="text-white" asChild>
+              <Link href={"/chat"}>
+                Chat with an agent <PartyPopperIcon />
+              </Link>
             </Button>
           </div>
         </div>
