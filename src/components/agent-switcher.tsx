@@ -21,7 +21,8 @@ import { ChevronsUpDown, Plus } from "lucide-react";
 
 import { agents } from "@/ai/agents";
 import { Input } from "./ui/input";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
+import { nanoid } from "nanoid";
 
 const AgentSwitcher = () => {
   const { agent } = useParams<{ agent: string; id: string }>();
@@ -29,10 +30,16 @@ const AgentSwitcher = () => {
   const [activeAgent, setActiveAgent] = React.useState(agents[0] ?? null);
   const [searchQuery, setSearchQuery] = React.useState("");
 
+  const router = useRouter();
+
   // Filter agents based on the search query
   const filteredAgents = agents.filter((agent) =>
     agent.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
+  const switchAgent = (agent: string) => {
+    router.push(`/chat/${agent}/${nanoid()}`);
+  };
 
   React.useEffect(() => {
     const foundAgent = agents.find((a) => a.id === agent);
@@ -80,7 +87,7 @@ const AgentSwitcher = () => {
             {filteredAgents.map((agent) => (
               <DropdownMenuItem
                 key={agent.name}
-                onClick={() => setActiveAgent(agent)}
+                onClick={() => switchAgent(agent.id)}
                 className="cursor-pointer"
               >
                 <Image
