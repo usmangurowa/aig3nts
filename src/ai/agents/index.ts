@@ -21,8 +21,8 @@ export const agents = [
         - search: To find **specific, active airdrops** and information.
         - scrape: To scrape/read a list of urls you get from search results
         - analyze: To analyze **individual airdrop** requirements and risks.
-        - summarize: To condense **specific airdrop** instructions and terms.
-        - answer: To provide detailed explanations and redemption guidance for **individual airdrops**.
+        
+        
         `,
     image: "https://api.dicebear.com/9.x/bottts-neutral/png?seed=hunter"
   },
@@ -53,8 +53,7 @@ export const agents = [
     - search: For searching the latest news about crypto on the internet.
     - scrape: For retrieving the content of news articles found through search.
     - analyze: For analyzing the news content and identifying key points and context.
-    - summarize: For creating concise summaries of news articles.
-    - answer: For providing direct answers, explanations, and summaries to the user.
+    
         `,
     image: "https://api.dicebear.com/9.x/bottts-neutral/png?seed=asha"
   },
@@ -81,8 +80,10 @@ export const agents = [
         - analyze: For analyzing DeFi protocol data and market trends.
         - search: For finding information on DeFi projects and strategies.
         - calculate: For calculating APY, TVL, and other DeFi metrics.
-        - summarize: For summarizing DeFi whitepapers and articles.
-        - answer: For answering DeFi questions and providing strategic advice.
+        - scrape: For retrieving the content of news articles found through search.
+
+        
+        
         `,
     image: "https://api.dicebear.com/9.x/bottts-neutral/png?seed=dexter"
   },
@@ -107,9 +108,10 @@ export const agents = [
         You have tools such as:
         - analyze: For analyzing NFT sales data and market trends.
         - search: For finding information on NFT projects and artists.
-        - compare: For comparing NFT marketplaces and collections.
-        - summarize: For summarizing NFT news and articles.
-        - answer: For answering NFT questions and providing market insights.
+        - scrape: For retrieving the content of news articles found through search.
+
+        
+        
         `,
     image: "https://api.dicebear.com/9.x/bottts-neutral/png?seed=valerie"
   },
@@ -135,8 +137,10 @@ export const agents = [
         - analyze: For analyzing market data and generating trading signals.
         - calculate: For calculating trading indicators and risk metrics.
         - search: For finding information on trading algorithms and strategies.
-        - summarize: For summarizing trading reports and analysis.
-        - answer: For answering trading questions and providing strategic guidance.
+        - scrape: For retrieving the content of news articles found through search.
+
+        
+        
         `,
     image: "https://api.dicebear.com/9.x/bottts-neutral/png?seed=zephyr"
   },
@@ -161,8 +165,9 @@ export const agents = [
         You have tools such as:
         - search: For finding information on tax laws and regulations.
         - analyze: For analyzing regulatory documents and tax implications.
-        - summarize: For summarizing regulatory updates and tax guides.
-        - answer: For answering tax and regulatory questions and providing compliance advice.
+        - scrape: For retrieving the content of news articles found through search.
+
+        
         `,
     image: "https://api.dicebear.com/9.x/bottts-neutral/png?seed=seraphina"
   },
@@ -188,8 +193,9 @@ export const agents = [
         - calculate: For performing financial calculations (e.g., loan payments, investment returns).
         - search: For finding information on financial products and strategies.
         - analyze: For analyzing financial data and providing insights.
-        - summarize: For summarizing complex financial documents.
-        - answer: For answering financial questions and providing tailored advice.
+        - scrape: For retrieving the content of news articles found through search.
+
+        
         `,
     image: "https://api.dicebear.com/9.x/bottts-neutral/png?seed=leo"
   },
@@ -213,11 +219,11 @@ export const agents = [
         You have a list of available tools and resources to help you coach writing.
 
         You have tools such as:
-        - generate: For generating writing prompts and story ideas.
         - analyze: For analyzing writing and providing feedback.
         - search: For finding writing resources and examples.
-        - summarize: For summarizing literary works and writing guides.
-        - answer: For answering writing questions and providing creative suggestions.
+        - scrape: For retrieving the content of news articles found through search.
+
+        
         `,
     image: "https://api.dicebear.com/9.x/bottts-neutral/png?seed=emily"
   }

@@ -10,6 +10,8 @@ import { modelProvider } from "@/ai/models";
 import { nanoid } from "nanoid";
 import { search } from "@/ai/tools/search";
 import { scrape } from "@/ai/tools/scrape";
+import { analyze } from "@/ai/tools/analyze";
+import { calculate } from "@/ai/tools/calculate";
 
 const chat = new Hono();
 
@@ -39,7 +41,9 @@ chat.post("/:agent", async (c) => {
         experimental_continueSteps: true,
         tools: {
           search,
-          scrape
+          scrape,
+          analyze,
+          calculate
         },
         // onStepFinish(event) {
         //   // console.log('onStepFinish', event);
@@ -63,8 +67,8 @@ chat.post("/:agent", async (c) => {
     },
 
     onError: (error) => {
-      console.log(error);
-      return "Oops, an error occured!";
+      console.log(JSON.stringify(error, null, 2));
+      return JSON.stringify(error);
     }
   });
 });
