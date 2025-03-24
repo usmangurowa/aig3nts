@@ -36,6 +36,7 @@ chat.post("/:agent", async (c) => {
         system: agentData.initial_prompt,
         messages,
         maxSteps: 20,
+        maxRetries: 3,
         experimental_transform: smoothStream({ chunking: "word" }),
         experimental_generateMessageId: nanoid,
         experimental_continueSteps: true,
@@ -49,7 +50,7 @@ chat.post("/:agent", async (c) => {
         //   // console.log('onStepFinish', event);
         // },
         onFinish: async ({ response, reasoning }) => {
-          console.log("onFinish", { response, reasoning });
+          // console.log("onFinish", { response, reasoning });
         },
         experimental_telemetry: {
           isEnabled: true,
@@ -62,12 +63,12 @@ chat.post("/:agent", async (c) => {
       });
 
       const steps = await result.steps;
-      console.dir(steps, { depth: null });
-      console.log("total steps", steps.length);
+      // console.dir(steps, { depth: null });
+      // console.log("total steps", steps.length);
     },
 
     onError: (error) => {
-      console.log(JSON.stringify(error, null, 2));
+      console.log(JSON.stringify({ error }, null, 2));
       return JSON.stringify(error);
     }
   });

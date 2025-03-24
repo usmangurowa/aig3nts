@@ -8,14 +8,19 @@ export const search = tool({
     query: z.string().nonempty().describe("The search query to use")
   }),
   execute: async (args) => {
-    const searchResults = await ddSearch(args.query, {
-      safeSearch: SafeSearchType.STRICT
-    });
+    try {
+      const searchResults = await ddSearch(args.query, {
+        safeSearch: SafeSearchType.STRICT
+      });
 
-    if (searchResults.noResults) {
-      return "No results found";
+      if (searchResults.noResults) {
+        return "No results found";
+      }
+
+      return searchResults;
+    } catch (error) {
+      console.error(JSON.stringify(error, null, 2));
+      return "An error occurred while searching the internet";
     }
-
-    return searchResults;
   }
 });
