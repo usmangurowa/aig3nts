@@ -49,9 +49,9 @@ chat.post("/:agent", async (c) => {
         // onStepFinish(event) {
         //   // console.log('onStepFinish', event);
         // },
-        onFinish: async ({ response, reasoning }) => {
-          // console.log("onFinish", { response, reasoning });
-        },
+        // onFinish: async ({ response, reasoning }) => {
+        // console.log("onFinish", { response, reasoning });
+        // },
         experimental_telemetry: {
           isEnabled: true,
           functionId: "stream-text"
@@ -62,7 +62,7 @@ chat.post("/:agent", async (c) => {
         sendReasoning: true
       });
 
-      const steps = await result.steps;
+      // const steps = await result.steps;
       // console.dir(steps, { depth: null });
       // console.log("total steps", steps.length);
     },
