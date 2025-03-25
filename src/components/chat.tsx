@@ -7,8 +7,11 @@ import { ChatMessage } from "@/components/chat-message";
 import React, { useRef, useEffect } from "react";
 import { useParams } from "next/navigation";
 import { useChat } from "ai/react";
+import { useStore } from "@/hooks/use-store";
 
 export default function Chat() {
+  const { chatModel, writingStyle, temperature } = useStore();
+  const messagesEndRef = useRef<HTMLDivElement>(null);
   const { agent, id } = useParams<{ agent: string; id: string }>();
 
   const { handleInputChange, input, handleSubmit, messages } = useChat({
@@ -16,21 +19,24 @@ export default function Chat() {
     id,
     onError: (error) => {
       alert(error.message);
+    },
+    body: {
+      chatModel,
+      writingStyle,
+      temperature
+    },
+    onFinish: () => {
+      messagesEndRef.current?.scrollIntoView({
+        behavior: "smooth"
+      });
     }
   });
-  const messagesEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({
       behavior: "smooth"
     });
   }, []);
-
-  useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({
-      behavior: "smooth"
-    });
-  }, [messages]);
 
   return (
     <ScrollArea className="flex-1 [&>div>div]:h-full w-full shadow-md md:rounded-s-[inherit] min-[1024px]:rounded-e-3xl bg-background">

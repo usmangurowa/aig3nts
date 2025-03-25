@@ -1,17 +1,17 @@
 import { create } from "zustand";
 
-interface Store {
+interface StoreType {
   chatModel: string;
   writingStyle: string;
   temperature: number;
-  updateStore: (newStore: Partial<Store>) => void;
+  updateStore: (newStore: Partial<StoreType>) => void;
 }
 
-const useStore = create<Store>((set) => ({
+const useStore = create<StoreType>((set) => ({
   chatModel: "chat-model-small",
   writingStyle: "casual",
   temperature: 0.5,
-  updateStore: (newStore: Partial<Store>) =>
+  updateStore: (newStore: Partial<StoreType>) =>
     set((state) => ({ ...state, ...newStore }))
 }));
 

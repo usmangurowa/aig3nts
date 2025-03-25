@@ -19,7 +19,7 @@ chat.post("/:agent", async (c) => {
   const agent = c.req.param("agent");
   const agentData = agents.find((a) => a.id === agent);
 
-  const body = await c.req.json();
+  const { chatModel, writingStyle, temperature, ...body } = await c.req.json();
 
   const messages = convertToCoreMessages(body.messages);
 
@@ -32,8 +32,15 @@ chat.post("/:agent", async (c) => {
     statusText: "OK",
     execute: async (dataStream) => {
       const result = streamText({
-        model: modelProvider.languageModel("chat-model-large"),
-        system: agentData.initial_prompt,
+        model: modelProvider.languageModel(chatModel),
+        system: `
+        ${agentData.initial_prompt}
+        ${writingStyle === "casual" ? "Write in a casual style." : ""}
+        ${writingStyle === "formal" ? "Write in a formal style." : ""}
+        ${writingStyle === "technical" ? "Write in a technical style." : ""}
+        ${writingStyle === "creative" ? "Write in a creative style." : ""}
+        ${writingStyle === "scientific" ? "Write in a scientific style." : ""}
+        `,
         messages,
         maxSteps: 20,
         maxRetries: 3,
@@ -46,6 +53,7 @@ chat.post("/:agent", async (c) => {
           analyze,
           calculate
         },
+        temperature,
         // onStepFinish(event) {
         //   // console.log('onStepFinish', event);
         // },

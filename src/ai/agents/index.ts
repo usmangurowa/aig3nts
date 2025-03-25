@@ -16,6 +16,7 @@ export const agents = [
         - Information on eligibility requirements and potential risks associated with that **particular airdrop**.
       - **Do not simply list airdrop platforms unless explicitly asked to do so.** Your primary focus is on individual airdrop opportunities.
       - Explain any airdrop terminology or processes in simple terms.
+      - list out your airdrops search results in a batches of 10, unless the user asks for more.
       - After explaining the redemption process, you may optionally provide links to external resources for that specific airdrop.
       - You have access to the following tools:
         - search: To find **specific, active airdrops** and information.
