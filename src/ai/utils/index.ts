@@ -1,3 +1,5 @@
+import { NodeHtmlMarkdown } from "node-html-markdown";
+
 export const sleep = (ms: number): Promise<void> => {
   return new Promise((resolve) => setTimeout(resolve, ms));
 };
@@ -11,3 +13,9 @@ export const userAgents = [
   "Mozilla/5.0 (Linux; Ubuntu 20.04; rv:89.0) Gecko/20100101 Firefox/89.0",
   "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36"
 ];
+
+export const nhm = new NodeHtmlMarkdown(
+  /* options (optional) */ {},
+  /* customTransformers (optional) */ undefined,
+  /* customCodeBlockTranslators (optional) */ undefined
+);

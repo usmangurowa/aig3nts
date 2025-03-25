@@ -1,14 +1,7 @@
 import { tool } from "ai";
 import { z } from "zod";
 import axios from "axios";
-import { userAgents } from "../utils";
-import { NodeHtmlMarkdown } from "node-html-markdown";
-
-const nhm = new NodeHtmlMarkdown(
-  /* options (optional) */ {},
-  /* customTransformers (optional) */ undefined,
-  /* customCodeBlockTranslators (optional) */ undefined
-);
+import { nhm, userAgents } from "../utils";
 
 export const scrape = tool({
   description:

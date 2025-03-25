@@ -15,6 +15,8 @@ import SliderControl from "@/components/slider-control";
 import { Sheet, SheetTitle, SheetContent } from "@/components/ui/sheet";
 import * as React from "react";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { chatModels } from "@/ai/models";
+import { useStore } from "@/hooks/use-store";
 
 type SettingsPanelContext = {
   openMobile: boolean;
@@ -66,7 +68,7 @@ SettingsPanelProvider.displayName = "SettingsPanelProvider";
 
 const SettingsPanelContent = () => {
   const id = React.useId();
-
+  const { chatModel, updateStore, writingStyle } = useStore();
   return (
     <>
       {/* Sidebar header */}
@@ -94,7 +96,10 @@ const SettingsPanelContent = () => {
               <Label htmlFor={`${id}-model`} className="font-normal">
                 Model
               </Label>
-              <Select defaultValue="1">
+              <Select
+                defaultValue={chatModel}
+                onValueChange={(value) => updateStore({ chatModel: value })}
+              >
                 <SelectTrigger
                   id={`${id}-model`}
                   className="bg-background w-auto max-w-full h-7 py-1 px-2 gap-1 [&_svg]:-me-1 border-none"
@@ -105,36 +110,11 @@ const SettingsPanelContent = () => {
                   className="[&_*[role=option]>span]:end-2 [&_*[role=option]>span]:start-auto [&_*[role=option]]:pe-8 [&_*[role=option]]:ps-2"
                   align="end"
                 >
-                  <SelectItem value="1">Chat 4.0</SelectItem>
-                  <SelectItem value="2">Chat 3.5</SelectItem>
-                  <SelectItem value="3">Chat 3.0</SelectItem>
-                  <SelectItem value="4">Chat 2.5</SelectItem>
-                  <SelectItem value="5">Chat 2.0</SelectItem>
-                  <SelectItem value="6">Chat 1.5</SelectItem>
-                  <SelectItem value="7">Chat 1.0</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-
-            {/* Response format */}
-            <div className="flex items-center justify-between gap-2">
-              <Label htmlFor={`${id}-response-format`} className="font-normal">
-                Response format
-              </Label>
-              <Select defaultValue="1">
-                <SelectTrigger
-                  id={`${id}-response-format`}
-                  className="bg-background w-auto max-w-full h-7 py-1 px-2 gap-1 [&_svg]:-me-1 border-none"
-                >
-                  <SelectValue placeholder="Select response format" />
-                </SelectTrigger>
-                <SelectContent
-                  className="[&_*[role=option]>span]:end-2 [&_*[role=option]>span]:start-auto [&_*[role=option]]:pe-8 [&_*[role=option]]:ps-2"
-                  align="end"
-                >
-                  <SelectItem value="1">text</SelectItem>
-                  <SelectItem value="2">json_object</SelectItem>
-                  <SelectItem value="3">json_schema</SelectItem>
+                  {chatModels.map((model) => (
+                    <SelectItem key={model.id} value={model.id}>
+                      {model.name}
+                    </SelectItem>
+                  ))}
                 </SelectContent>
               </Select>
             </div>
@@ -144,7 +124,10 @@ const SettingsPanelContent = () => {
               <Label htmlFor={`${id}-writing-style`} className="font-normal">
                 Writing style
               </Label>
-              <Select defaultValue="1">
+              <Select
+                defaultValue={writingStyle}
+                onValueChange={(value) => updateStore({ writingStyle: value })}
+              >
                 <SelectTrigger
                   id={`${id}-writing-style`}
                   className="bg-background w-auto max-w-full h-7 py-1 px-2 gap-1 [&_svg]:-me-1 border-none"
@@ -160,30 +143,6 @@ const SettingsPanelContent = () => {
                   <SelectItem value="3">Technical</SelectItem>
                   <SelectItem value="4">Creative</SelectItem>
                   <SelectItem value="5">Scientific</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-
-            {/* Mode */}
-            <div className="flex items-center justify-between gap-2">
-              <Label htmlFor={`${id}-mode`} className="font-normal">
-                Mode
-              </Label>
-              <Select defaultValue="1">
-                <SelectTrigger
-                  id={`${id}-mode`}
-                  className="bg-background w-auto max-w-full h-7 py-1 px-2 gap-1 [&_svg]:-me-1 border-none"
-                >
-                  <SelectValue placeholder="Select mode" />
-                </SelectTrigger>
-                <SelectContent
-                  className="[&_*[role=option]>span]:end-2 [&_*[role=option]>span]:start-auto [&_*[role=option]]:pe-8 [&_*[role=option]]:ps-2"
-                  align="end"
-                >
-                  <SelectItem value="1">Chatbot</SelectItem>
-                  <SelectItem value="2">Code</SelectItem>
-                  <SelectItem value="3">Translate</SelectItem>
-                  <SelectItem value="4">Summarize</SelectItem>
                 </SelectContent>
               </Select>
             </div>
