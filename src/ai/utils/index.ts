@@ -19,3 +19,31 @@ export const nhm = new NodeHtmlMarkdown(
   /* customTransformers (optional) */ undefined,
   /* customCodeBlockTranslators (optional) */ undefined
 );
+
+export const writingStyles = [
+  {
+    id: "casual",
+    name: "Casual",
+    description: "Casual writing style"
+  },
+  {
+    id: "formal",
+    name: "Formal",
+    description: "Formal writing style"
+  },
+  {
+    id: "technical",
+    name: "Technical",
+    description: "Technical writing style"
+  },
+  {
+    id: "creative",
+    name: "Creative",
+    description: "Creative writing style"
+  },
+  {
+    id: "scientific",
+    name: "Scientific",
+    description: "Scientific writing style"
+  }
+];

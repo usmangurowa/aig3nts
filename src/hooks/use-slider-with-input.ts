@@ -7,13 +7,15 @@ type UseSliderWithInputProps = {
   maxValue?: number;
   initialValue?: number[];
   defaultValue?: number[];
+  onValueChange?: (value: number[]) => void;
 };
 
 export function useSliderWithInput({
   minValue = 0,
   maxValue = 100,
   initialValue = [minValue],
-  defaultValue = [minValue]
+  defaultValue = [minValue],
+  onValueChange
 }: UseSliderWithInputProps) {
   const [sliderValue, setSliderValue] = useState(initialValue);
   const [inputValues, setInputValues] = useState(
@@ -59,7 +61,7 @@ export function useSliderWithInput({
       const newSliderValues = [...sliderValue];
       newSliderValues[index] = clampedValue;
       setSliderValue(newSliderValues);
-
+      onValueChange?.(newSliderValues);
       const newInputValues = [...inputValues];
       newInputValues[index] = clampedValue.toString();
       setInputValues(newInputValues);

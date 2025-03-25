@@ -17,7 +17,7 @@ import * as React from "react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { chatModels } from "@/ai/models";
 import { useStore } from "@/hooks/use-store";
-
+import { writingStyles } from "@/ai/utils";
 type SettingsPanelContext = {
   openMobile: boolean;
   setOpenMobile: (open: boolean) => void;
@@ -68,7 +68,7 @@ SettingsPanelProvider.displayName = "SettingsPanelProvider";
 
 const SettingsPanelContent = () => {
   const id = React.useId();
-  const { chatModel, updateStore, writingStyle } = useStore();
+  const { chatModel, updateStore, writingStyle, temperature } = useStore();
   return (
     <>
       {/* Sidebar header */}
@@ -138,11 +138,11 @@ const SettingsPanelContent = () => {
                   className="[&_*[role=option]>span]:end-2 [&_*[role=option]>span]:start-auto [&_*[role=option]]:pe-8 [&_*[role=option]]:ps-2"
                   align="end"
                 >
-                  <SelectItem value="1">Concise</SelectItem>
-                  <SelectItem value="2">Formal</SelectItem>
-                  <SelectItem value="3">Technical</SelectItem>
-                  <SelectItem value="4">Creative</SelectItem>
-                  <SelectItem value="5">Scientific</SelectItem>
+                  {writingStyles.map((style) => (
+                    <SelectItem key={style.id} value={style.id}>
+                      {style.name}
+                    </SelectItem>
+                  ))}
                 </SelectContent>
               </Select>
             </div>
@@ -159,13 +159,14 @@ const SettingsPanelContent = () => {
             <SliderControl
               minValue={0}
               maxValue={2}
-              initialValue={[1.25]}
+              initialValue={[temperature]}
               defaultValue={[1]}
               step={0.01}
               label="Temperature"
+              onValueChange={(value) => updateStore({ temperature: value[0] })}
             />
 
-            {/* Maximum length */}
+            {/* Maximum length
             <SliderControl
               className="[&_input]:w-14"
               minValue={1}
@@ -174,17 +175,7 @@ const SettingsPanelContent = () => {
               defaultValue={[2048]}
               step={1}
               label="Maximum length"
-            />
-
-            {/* Top P */}
-            <SliderControl
-              minValue={0}
-              maxValue={1}
-              initialValue={[0.5]}
-              defaultValue={[0]}
-              step={0.01}
-              label="Top P"
-            />
+            /> */}
           </div>
         </div>
       </div>

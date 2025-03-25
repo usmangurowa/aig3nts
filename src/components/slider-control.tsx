@@ -22,6 +22,7 @@ interface SliderControlProps {
   defaultValue: [number];
   step: number;
   label: string;
+  onValueChange?: (value: number[]) => void;
 }
 
 export default function SliderControl({
@@ -31,7 +32,8 @@ export default function SliderControl({
   initialValue,
   defaultValue,
   step,
-  label
+  label,
+  onValueChange
 }: SliderControlProps) {
   const {
     sliderValue,
@@ -41,7 +43,13 @@ export default function SliderControl({
     handleSliderChange,
     resetToDefault,
     showReset
-  } = useSliderWithInput({ minValue, maxValue, initialValue, defaultValue });
+  } = useSliderWithInput({
+    minValue,
+    maxValue,
+    initialValue,
+    defaultValue,
+    onValueChange
+  });
 
   return (
     <div className={cn("space-y-3", className)}>
