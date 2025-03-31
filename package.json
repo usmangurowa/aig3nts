@@ -6,7 +6,8 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "db:generate": "pnpm dlx supabase gen types --lang=typescript --project-id rzjpohjwleytiobofixa --schema public > ./src/supabase/types/db-types.ts"
   },
   "dependencies": {
     "@ai-sdk/google": "^1.1.14",
