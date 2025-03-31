@@ -1,5 +1,5 @@
 import { createServerClient } from "@supabase/ssr";
-import type { Database } from "@/supabase/types/db-types";
+// import type { Database } from "@/supabase/types/db-types";
 import { cookies } from "next/headers";
 
 const conWarn = console.warn;
@@ -33,7 +33,7 @@ console.log = (...args) => {
 
 export async function createClient() {
   const cookieStore = await cookies();
-  return createServerClient<Database>(
+  return createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
