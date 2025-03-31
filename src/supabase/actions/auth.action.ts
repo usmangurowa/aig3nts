@@ -1,7 +1,7 @@
 import type {
   SignInWithPasswordCredentials,
   SignUpWithPasswordCredentials,
-  SupabaseClient,
+  SupabaseClient
 } from "@supabase/supabase-js";
 
 export const getSession = async (supabase: SupabaseClient) => {
@@ -17,8 +17,8 @@ export const login_with_github = async (supabase: SupabaseClient) => {
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: "github",
     options: {
-      redirectTo: `${process.env.NEXT_PUBLIC_WEB_URL}/auth/callback`,
-    },
+      redirectTo: `${process.env.NEXT_PUBLIC_WEB_URL}/auth/callback`
+    }
   });
 
   if (error) {
@@ -32,11 +32,11 @@ export const login_with_github = async (supabase: SupabaseClient) => {
 
 export const login_with_email = async (
   supabase: SupabaseClient,
-  { email }: { email: string },
+  { email }: { email: string }
 ) => {
   const { error, data } = await supabase.auth.signInWithOtp({
     email: email,
-    options: { shouldCreateUser: true },
+    options: { shouldCreateUser: true }
   });
 
   if (error) {
@@ -48,7 +48,7 @@ export const login_with_email = async (
 
 export const login_with_email_and_password = async (
   supabase: SupabaseClient,
-  payload: SignInWithPasswordCredentials,
+  payload: SignInWithPasswordCredentials
 ) => {
   const { error, data } = await supabase.auth.signInWithPassword(payload);
 
@@ -61,7 +61,7 @@ export const login_with_email_and_password = async (
 
 export const register_with_email_and_password = async (
   supabase: SupabaseClient,
-  payload: SignUpWithPasswordCredentials,
+  payload: SignUpWithPasswordCredentials
 ) => {
   const { error, data } = await supabase.auth.signUp(payload);
 
@@ -74,12 +74,12 @@ export const register_with_email_and_password = async (
 
 export const verify_otp = async (
   supabase: SupabaseClient,
-  { email, otp }: { email: string; otp: string },
+  { email, otp }: { email: string; otp: string }
 ) => {
   const { error, data } = await supabase.auth.verifyOtp({
     email,
     token: otp,
-    type: "email",
+    type: "email"
   });
   if (error) {
     throw error;
@@ -89,10 +89,10 @@ export const verify_otp = async (
 };
 export const update_profile = async (
   supabase: SupabaseClient,
-  payload: Record<string, any>,
+  payload: Record<string, unknown>
 ) => {
   const { data, error } = await supabase.auth.updateUser({
-    data: payload,
+    data: payload
   });
 
   if (error) {
@@ -114,10 +114,10 @@ export const logout = async (supabase: SupabaseClient) => {
 
 export const forgot_password = async (
   supabase: SupabaseClient,
-  { email }: { email: string },
+  { email }: { email: string }
 ) => {
   const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
-    redirectTo: `${process.env.NEXT_PUBLIC_WEB_URL}/auth/reset-password`,
+    redirectTo: `${process.env.NEXT_PUBLIC_WEB_URL}/auth/reset-password`
   });
 
   if (error) {
@@ -129,10 +129,10 @@ export const forgot_password = async (
 
 export const reset_password = async (
   supabase: SupabaseClient,
-  { password }: { password: string },
+  { password }: { password: string }
 ) => {
   const { data, error } = await supabase.auth.updateUser({
-    password: password,
+    password: password
   });
 
   if (error) {
