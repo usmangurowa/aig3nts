@@ -120,6 +120,9 @@ importers:
       remark-gfm:
         specifier: ^4.0.1
         version: 4.0.1
+      swr:
+        specifier: ^2.3.3
+        version: 2.3.3(react@19.0.0)
       tailwind-merge:
         specifier: ^3.0.1
         version: 3.0.2
