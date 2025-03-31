@@ -1,5 +1,5 @@
 import { createServerClient } from "@supabase/ssr";
-import type { Database } from "../types/db-types";
+import type { Database } from "@/supabase/types/db-types";
 import { cookies } from "next/headers";
 
 const conWarn = console.warn;
